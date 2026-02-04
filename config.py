@@ -1,4 +1,5 @@
 # config.py
+import os
 
 # User Mapping: Chat Name -> Real Name
 USER_MAPPING = {
@@ -10,27 +11,41 @@ USER_MAPPING = {
     'Alexander': 'Alexander'
 }
 
+# Time Zone Offsets (in Hours)
+TIMEZONE_OFFSETS = {
+    'Pablo': -9,
+    'Sergio': 0,
+    'Robin': 0,
+    'Carlos': -1,
+    'Ryan': -1,
+    'Alexander': 0
+}
+
+# Strict Output Order
+USER_ORDER = ['Pablo', 'Sergio', 'Robin', 'Carlos', 'Ryan', 'Alexander']
+
+# Output Configuration
+OUTPUT_FOLDER = "output"
+
 # Synonyms for logic
 YESTERDAY_KEYWORDS = [
     "ayer", "cacayer", "del dia anterior", 
-    "gestern", "anoche", "madrugada pasada"
+    "gestern", "anoche", "madrugada pasada",
+    "yesterday", "ayet"
 ]
 
-# Words that indicate time but shouldn't trigger a mathematical shift
 VAGUE_TIME_KEYWORDS = [
-    "antes", "de antes", "esta mañana", "pronto", 
-    "luego", "rato", "ya", "tarde"
+    "antes", "de antes", "esta mañana", 
+    "tarde", "cacantes", "cacamañana", "cacanoche",
+    "rato", "de hace"
 ]
 
-# Keywords for specific types of poop
 COTIZADA_KEYWORDS = ["cotizada", "pagada", "remunerada"]
 
+# New: Rainbow detection now relies on text, not poop count
+RAINBOW_KEYWORDS = ["rainbow"]
+
 # Regex Patterns
-# Matches: 12/07/2024, 10:12 - User: Message
 LOG_PATTERN = r'^(\d{2}/\d{2}/\d{4}), (\d{2}:\d{2}) - ([^:]+): (.+)$'
-
-# Matches times like: 9am, 10:30, 15:00h, 4 pm
 TIME_PATTERN = r'\b(\d{1,2})(?:[:.](\d{2}))?\s*(am|pm|h)?\b'
-
-# Matches relative time: hace 2 horas, hace 30 min
 RELATIVE_TIME_PATTERN = r'hace\s+(\d+)\s*(h|horas|hours|m|min|minutos)'
